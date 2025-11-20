@@ -210,3 +210,4 @@ __marimo__/
 #dataset and MedSAM2
 *.tif
 MedSAM2/
+*.png
