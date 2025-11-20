@@ -211,3 +211,4 @@ __marimo__/
 *.tif
 MedSAM2/
 *.png
+*.npy
