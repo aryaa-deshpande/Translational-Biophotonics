@@ -208,5 +208,5 @@ __marimo__/
 
 
 #dataset and MedSAM2
-*.tifMedSAM2/
+*.tif
 MedSAM2/
