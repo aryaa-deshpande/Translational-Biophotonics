@@ -207,8 +207,19 @@ marimo/_lsp/
 __marimo__/
 
 
-#dataset and MedSAM2
-*.tif
 MedSAM2/
-*.png
 *.npy
+
+# Mac crap
+.DS_Store
+
+# Results
+results/
+*.csv
+*.png
+*.tif
+*.tiff
+
+# Python cache
+__pycache__/
+*.pyc
