@@ -1,4 +1,4 @@
-# src/medsam2_core.py
+
 
 import functools
 from pathlib import Path
@@ -12,14 +12,14 @@ from sam2.sam2_image_predictor import SAM2ImagePredictor
 
 
 
-# ----------------- Paths -----------------
+#  Paths 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_RAW = ROOT / "data" / "raw" / "raw_oct.tif"
 DATA_MASK = ROOT / "data" / "masks" / "mask_oct.tif"
 RESULTS_DIR = ROOT / "results"
 
 
-# ----------------- OmegaConf resolvers -----------------
+#  OmegaConf resolvers 
 def _times_resolver(*args):
     vals = [float(a) for a in args]
     return functools.reduce(lambda x, y: x * y, vals, 1.0)
@@ -40,7 +40,7 @@ for name, fn in {"times": _times_resolver, "divide": _divide_resolver}.items():
         pass
 
 
-# ----------------- Data loading -----------------
+#  Data loading 
 def load_full_volumes():
     print(f"Loading OCT from {DATA_RAW}")
     vol = tiff.imread(DATA_RAW)  # (D, H, W)
@@ -59,7 +59,7 @@ def load_full_volumes():
     return vol, mask_vol, hrf_slices
 
 
-# ----------------- Build MedSAM2 -----------------
+#  Build MedSAM2 
 def build_medsam2_model():
     cfg_name = "configs/sam2.1_hiera_t512.yaml"
     ckpt = ROOT / "MedSAM2" / "checkpoints" / "MedSAM2_latest.pt"
@@ -80,7 +80,7 @@ def build_medsam2_model():
     return predictor
 
 
-# ----------------- Single-slice processing -----------------
+#  Single-slice processing 
 def process_single_slice(slice_idx, vol, mask_vol, predictor, results_dir, save_fig=True):
     """
     Run MedSAM2 on one slice, compute metrics, and (optionally) save mask + overlay.

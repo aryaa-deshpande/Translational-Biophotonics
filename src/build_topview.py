@@ -9,7 +9,7 @@ import tifffile as tiff
 import matplotlib.pyplot as plt
 
 
-# ----------------- Paths -----------------
+#    Paths   
 ROOT = Path(__file__).resolve().parents[1]
 DATA_MASK = ROOT / "data" / "masks" / "mask_oct.tif"
 DATA_RAW = ROOT / "data" / "raw" / "raw_oct.tif"
@@ -18,7 +18,7 @@ OUT_DIR = ROOT / "results" / "topview"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 
-# ----------------- Load GT volume -----------------
+#    Load GT volume   
 def load_gt_volume():
     print(f"Loading GT mask volume from {DATA_MASK}")
     gt_vol = tiff.imread(DATA_MASK)  # (D, H, W)
@@ -26,7 +26,7 @@ def load_gt_volume():
     return (gt_vol > 0).astype(np.uint8)
 
 
-# ----------------- Rebuild 3D predicted volume -----------------
+#    Rebuild 3D predicted volume   
 def load_pred_volume(gt_shape):
     """
     Create a 3D prediction volume (D, H, W) from per-slice MedSAM2 masks.
@@ -66,7 +66,7 @@ def load_pred_volume(gt_shape):
     return pred_vol
 
 
-# ----------------- 3D Dice + topview computation -----------------
+#    3D Dice + topview computation   
 def compute_3d_metrics(gt_vol, pred_vol):
     gt = gt_vol.astype(bool)
     pred = pred_vol.astype(bool)
@@ -124,7 +124,7 @@ def load_intensity_topview():
     return mip
 
 
-# ----------------- Visualization helpers -----------------
+#    Visualization helpers   
 def save_topview_images(top_gt, top_pred, freq_pred):
     intensity_top = load_intensity_topview()
     # GT topview
@@ -217,7 +217,7 @@ def save_metrics_csv(metrics_3d):
     print("Saved 3D metrics CSV to:", csv_path)
 
 
-# ----------------- Main -----------------
+#    Main   
 def main():
     gt_vol = load_gt_volume()
     pred_vol = load_pred_volume(gt_vol.shape)

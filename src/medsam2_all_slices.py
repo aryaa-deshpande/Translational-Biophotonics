@@ -27,7 +27,7 @@ def run_all_hrf_slices():
 
     dices = [m["dice"] for m in all_metrics]
     avg_dice = sum(dices) / len(dices)
-    print("\n========== SUMMARY ==========")
+    print("\n SUMMARY: ")
     print(f"Processed {len(all_metrics)} HRF slices")
     print(f"Mean Dice: {avg_dice:.4f}")
     print("Per-slice Dice:")

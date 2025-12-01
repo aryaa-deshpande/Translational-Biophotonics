@@ -16,7 +16,7 @@ def load_and_prepare_oct():
     print("Original volume shape:", vol.shape)
     print("Original dtype:", vol.dtype)
 
-    # --- normalize to [0, 255] uint8, as MedSAM2 expects ---
+    #   normalize to [0, 255] uint8, as MedSAM2 expects  
     vol = vol.astype(np.float32)
 
     # shift so min = 0
@@ -33,7 +33,7 @@ def load_and_prepare_oct():
     print("Normalized volume shape:", vol.shape)
     print("Normalized dtype:", vol.dtype)
 
-    # --- save for MedSAM2 inference ---
+    #   save for MedSAM2 inference  
     np.save(save_path, vol)
     print(f"Saved normalized volume to: {save_path}")
 

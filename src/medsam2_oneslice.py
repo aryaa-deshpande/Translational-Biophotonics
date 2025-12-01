@@ -1,4 +1,4 @@
-# src/medsam2_oneslice.py
+
 
 from medsam2_core import (
     ROOT,
